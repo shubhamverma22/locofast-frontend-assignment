@@ -1,42 +1,67 @@
 import React from "react";
-import { Modal, Container, Row, Col, Button } from "react-bootstrap";
+import Left from "./Left"
 import Right from "./Right";
-import Left from "./Left";
-import "../style.css";
+import { Button, Modal, Container, Row, Col } from "react-bootstrap";
 
-const Dialog = (props) => {
-	return (
-		<Modal
-			className="main-dialog"
-			{...props}
-			size="xl"
-			aria-labelledby="contained-modal-title-vcenter"
-		>
-			<Modal.Header className="main-header" closeButton>
-				<Modal.Title id="contained-modal-title-vcenter">
-					Material details
-				</Modal.Title>
-			</Modal.Header>
-			<Modal.Body className="show-grid">
-				<Container>
-					<Row>
-						<Col xs={6} md={4}>
-							<Left />
-						</Col>
-						<Col xs={12} md={8}>
-							<Right />
-						</Col>
-					</Row>
-				</Container>
-			</Modal.Body>
-			<Modal.Footer className="main-footer">
-				<Button variant="light">Back</Button>
-				<Button variant="secondary" onClick={props.onHide}>
-					Next
+class Dialog extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			show: false,
+		};
+	}
+	handleModal() {
+		this.setState({ show: !this.state.show });
+	}
+	render() {
+		return (
+			<div>
+				<Button
+					onClick={() => {
+						this.handleModal();
+					}}
+				>
+					Opan Modal
 				</Button>
-			</Modal.Footer>
-		</Modal>
-	);
-};
+				<Modal
+					show={this.state.show}
+					onHide={() => this.handleModal()}
+					size="xl"
+					aria-labelledby="contained-modal-title-vcenter"
+				>
+					<Modal.Header closeButton className="font-weight-bold">
+						Material Details
+					</Modal.Header>
+					<Modal.Body>
+						<Container>
+							<Row>
+								<Col sm={4}>
+									{/* <img src="https://i.pinimg.com/originals/77/bf/ea/77bfea59d1f0217d96bd8cebad62325d.jpg"></img> */}
+									<Left />
+								</Col>
+								<Col sm={8}>
+									<Right />
+								</Col>
+							</Row>
+						</Container>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button
+							variant="secondary"
+							onClick={() => {
+								this.handleModal();
+							}}
+						>
+							Back
+						</Button>
+						<Button variant="primary" disabled>
+							Next
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
+		);
+	}
+}
 
 export default Dialog;
