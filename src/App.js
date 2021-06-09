@@ -8,10 +8,6 @@ function App() {
 	const [modalShow, setModalShow] = useState(false);
 	return (
 		<div className="App">
-			<Button variant="primary" onClick={() => setModalShow(true)}>
-				Launch modal with grid
-			</Button>
-
 			<Dialog show={modalShow} onHide={() => setModalShow(false)} />
 			<Cards />
 		</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { Form, Col } from "react-bootstrap";
-import "./style.css";
+import "../style.css";
 
 const Right = () => {
 	return (
